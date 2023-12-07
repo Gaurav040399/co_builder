@@ -3,8 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
   <title>Arrow syncronizing</title>
+  <style>
+    .container {
+      position: relative;
+    }
+    
+    .arrow {
+      width: 100px;
+      height: 20px;
+      background-color: black;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform-origin: 0 50%;
+    }
+    
+    #arrow2 {
+      transform: scaleX(-1); 
+    }
+    
+  </style>
 </head>
 <body>
   <div class="window">
@@ -18,5 +37,53 @@
     
   </div>
 </body>
-<script src="main.js"></script>
+<script >
+  const arrow1 = document.getElementById('arrow1');
+const arrow2 = document.getElementById('arrow2');
+const rotaion = document.getElementById("rotation");
+
+function updateRotation() {
+  const rotationValueX = localStorage.getItem('arrowRotationX') || 0;
+  const rotationValueY = localStorage.getItem('arrowRotationY') || 0;
+  arrow1.style.transform = `rotate(${rotationValueX}deg)`;
+  arrow2.style.transform = `rotate(${rotationValueY}deg)`;
+}
+
+function handleArrowRotation() {
+  let rotationValueX = JSON.parse(localStorage.getItem('arrowRotationX')) || 0;
+  let rotationValueY = JSON.parse(localStorage.getItem('arrowRotationY')) || 0;
+
+  arrow1.addEventListener('load', () => {
+    rotaion.innerText = 'New coordinates: X=' + window.screenX + ', Y=' + window.screenY
+    checkWindowPosition();
+    updateRotation();
+  });
+
+  window.addEventListener('storage', (event) => {
+    if (event.key === 'arrowRotationX' && event.key === 'arrowRotationY') {
+      updateRotation();
+    }
+  });
+}
+
+handleArrowRotation();
+updateRotation();
+
+let prevX = window.screenX;
+let prevY = window.screenY;
+
+function checkWindowPosition() {
+  if (window.screenX !== prevX || window.screenY !== prevY) {
+    console.log('Window position changed');
+    console.log('New coordinates: X=' + window.screenX + ', Y=' + window.screenY);
+    rotaion.innerText = 'New coordinates: X=' + window.screenX + ', Y=' + window.screenY
+    prevX = window.screenX;
+    prevY = window.screenY;
+    localStorage.setItem('arrowRotationX', prevX);
+    localStorage.setItem('arrowRotationY', prevY);
+  }
+}
+
+setInterval(checkWindowPosition, 500);
+</script>
 </html>
