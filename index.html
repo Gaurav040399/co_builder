@@ -3,29 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>window 1</title>
-  <style>
-    /* CSS styles for arrow */
-    .arrow {
-      width: 100px;
-      height: 100px;
-      position: absolute;
-      transition: transform 0.3s ease-in-out;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
+  <title>Arrow syncronizing</title>
 </head>
 <body>
   <div class="window">
-    <img src="arrow.png" class="arrow" id="arrow">
+    <div class="container">
+      <img src="arrow.png" class="arrow" id="arrow1"></img>
+      <img src="arrow.png" class="arrow" id="arrow2"></img>
+    </div>
+    <div>
+      <p id="rotation"></p>
+    </div>
+    
   </div>
- 
-  <script>
-    let arrow = document.getElementById("arrow")
-
-    window.addEventListener("onorientationchange",()=>{
-      console.log("hhh")
-    })
-
-  </script>
 </body>
+<script src="main.js"></script>
 </html>

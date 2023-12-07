@@ -1,0 +1,18 @@
+.container {
+    position: relative;
+  }
+  
+  .arrow {
+    width: 100px;
+    height: 20px;
+    background-color: black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: 0 50%;
+  }
+  
+  #arrow2 {
+    transform: scaleX(-1); 
+  }
+  
