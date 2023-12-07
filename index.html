@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>window 1</title>
+  <style>
+    /* CSS styles for arrow */
+    .arrow {
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      transition: transform 0.3s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+  <div class="window">
+    <img src="arrow.png" class="arrow" id="arrow">
+  </div>
+ 
+  <script>
+    let arrow = document.getElementById("arrow")
+
+    window.addEventListener("onorientationchange",()=>{
+      console.log("hhh")
+    })
+
+  </script>
+</body>
+</html>
